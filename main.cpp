@@ -2,6 +2,7 @@
 #include <cstdio>
 
 #include "function.hpp"
+#include "bind.hpp"
 
 void test(int a, int b)
 {
@@ -17,6 +18,7 @@ public:
 	}
 };
 
+
 int main()
 {
 	function<void(int,int)> f(&test);
@@ -25,6 +27,9 @@ int main()
 	Functor functor;
 	function<void(int, int)> f2(functor);
 	f2(2, 3);
+
+	auto ff = bind(&test, _2, _1);
+	ff(3, 6);
 
 	system("pause");
 }
